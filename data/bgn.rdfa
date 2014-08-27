@@ -20,7 +20,7 @@
     </p>
 <p vocab="http://bibliograph.net/" prefix="bgn:http://bibliograph.net/">Default vocabulary prefix: 'bgn:'</p>
 <p>
-<span property="schema:softwareVersion">BiblioGraph.net Version 0.72</span>
+<span property="schema:softwareVersion">BiblioGraph.net Version 0.73</span>
 </p>
 <hr/>
 <h2>Types</h2>
