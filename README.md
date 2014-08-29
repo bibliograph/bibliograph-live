@@ -1,11 +1,13 @@
-schemaorg
+BiblioGraph.net
 =========
 
-Schema.org on app engine
+BiblioGraph.net on app engine
 
-This codebase is a simple Python app used to publish the schema.org site.
+This codebase is a simple Python app used to publish the bibliograph.net site.
 
-It uses Google App Engine, and is designed to allow schema.org contributors to explore 
+It is based, both in terms and the software to serve the site, on Schema.org
+
+It uses Google App Engine, and is designed to allow contributors to explore 
 new or improved schemas. The code has a bias towards simplicity and minimal dependencies,
 rather than elegance and re-usability. 
 
@@ -22,8 +24,6 @@ cautioned that this code is not designed to become a general purpose framework, 
 that we're comfortable with it being hardcoded in various ways around the needs and
 approaches of schema.org. If that's not too discouraging, do let us know if you find
 interesting uses for it or have ideas for improvements.
-
-See also wiki: https://github.com/rvguha/schemaorg/wiki/Contributing
 
 Notes
 =====

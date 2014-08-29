@@ -20,7 +20,7 @@
     </p>
 <p vocab="http://bibliograph.net/" prefix="bgn:http://bibliograph.net/">Default vocabulary prefix: 'bgn:'</p>
 <p>
-<span property="schema:softwareVersion">BiblioGraph.net Version 0.73</span>
+<span property="schema:softwareVersion">BiblioGraph.net Version 0.82</span>
 </p>
 <hr/>
 <h2>Types</h2>
@@ -36,7 +36,7 @@
 
 <div typeof="rdfs:Class" resource="http://bibliograph.net/Atlas">
 <span class="h" property="rdfs:label">bgn:Atlas</span>
-<span property="rdfs:comment">A collection of maps.</span>
+<span property="rdfs:comment">A collection or bound volume of maps, charts, plates or tables, physical or in media form illustrating any subject.</span>
 <span> Subclass of:
 		     <a property="rdfs:subClassOf" href="http://schema.org/CreativeWork">schema:CreativeWork</a>
 </span>
@@ -45,7 +45,7 @@
 
 <div typeof="rdfs:Class" resource="http://bibliograph.net/BlurayDisc">
 <span class="h" property="rdfs:label">bgn:BlurayDisc</span>
-<span property="rdfs:comment">An optical disk containing information such as videos.</span>
+<span property="rdfs:comment">A digital optical disc data storage format capable of storing high-definition video resolution.</span>
 <span> Subclass of:
 		     <a property="rdfs:subClassOf" href="http://schema.org/Product">schema:Product</a>
 </span>
@@ -61,7 +61,7 @@
 
 <div typeof="rdfs:Class" resource="http://bibliograph.net/Chapter">
 <span class="h" property="rdfs:label">bgn:Chapter</span>
-<span property="rdfs:comment">A chapter in a book.</span>
+<span property="rdfs:comment">One of the sections into which a book is divided. A chapter usually has a number or a name.</span>
 <span> Subclass of:
 		     <a property="rdfs:subClassOf" href="http://schema.org/CreativeWork">schema:CreativeWork</a>
 </span>
@@ -78,7 +78,7 @@
 
 <div typeof="rdfs:Class" resource="http://bibliograph.net/CD">
 <span class="h" property="rdfs:label">bgn:CD</span>
-<span property="rdfs:comment">An optical disk used to store information, such as audio recordings.</span>
+<span property="rdfs:comment">CD or Compact Disk - a storage medium which can hold large amounts of data including images and sound.</span>
 <span> Subclass of:
 			<a property="rdfs:subClassOf" href="http://schema.org/Product">schema:Product</a>
 </span>
@@ -96,7 +96,7 @@
 
 <div typeof="rdfs:Class" resource="http://bibliograph.net/DVD">
 <span class="h" property="rdfs:label">bgn:DVD</span>
-<span property="rdfs:comment">An optical disk used to store information, such as videos.</span>
+<span property="rdfs:comment">A type of compact disc able to store large amounts of data, especially high-resolution audiovisual material.</span>
 <span> Subclass of:
 			<a property="rdfs:subClassOf" href="http://schema.org/Product">schema:Product</a>
 </span>
@@ -148,7 +148,7 @@
 
 <div typeof="rdfs:Class" resource="http://bibliograph.net/LPRecord">
 <span class="h" property="rdfs:label">bgn:LPRecord</span>
-<span property="rdfs:comment">A Long Play (LP) phonograph record.</span>
+<span property="rdfs:comment">LP or Long-Play record - a format for phonograph (gramophone) records, an analog sound storage medium.</span>
 <span> Subclass of:
 			<a property="rdfs:subClassOf" href="http://schema.org/CreativeWork">schema:CreativeWork</a>
 </span>
@@ -176,7 +176,7 @@
 
 <div typeof="rdfs:Class" resource="http://bibliograph.net/Newspaper">
 <span class="h" property="rdfs:label">bgn:Newspaper</span>
-<span property="rdfs:comment">A Newspaper</span>
+<span property="rdfs:comment">A publication containing information about varied topics that are pertinent to general information, a geographic area, or a specific subject matter (i.e. business, culture, education). Often published daily.</span>
 <span> Subclass of:
 		     <a property="rdfs:subClassOf" href="http://schema.org/Periodical">schema:Periodical</a>
 </span>
@@ -219,9 +219,9 @@
 </span>
 </div>
 
-<div typeof="rdfs:Class" resource="http://bibliograph.net/Series">
-<span class="h" property="rdfs:label">bgn:Series</span>
-<span property="rdfs:comment">A sequence of related creative works released over time.</span>
+<div typeof="rdfs:Class" resource="http://bibliograph.net/PublicationSeries">
+<span class="h" property="rdfs:label">bgn:PublicationSeries</span>
+<span property="rdfs:comment">A set of related creative works that are generated in sequence over time.</span>
 <span> Subclass of:
 		     <a property="rdfs:subClassOf" href="http://schema.org/CreativeWork">schema:CreativeWork</a>
 </span>
@@ -244,7 +244,7 @@
 
 <div typeof="rdfs:Class" resource="http://bibliograph.net/Thesis">
 <span class="h" property="rdfs:label">bgn:Thesis</span>
-<span property="rdfs:comment">A thesis or dissertation document submitted for an academic degree.</span>
+<span property="rdfs:comment">A thesis or dissertation document submitted in support of candidature for an academic degree or professional qualification.</span>
 <span> Subclass of:
 		     <a property="rdfs:subClassOf" href="http://schema.org/CreativeWork">schema:CreativeWork</a>
 </span>
@@ -291,8 +291,13 @@
 </div>
 
 <div typeof="http://schema.org/BookFormatType" resource="http://bibliograph.net/LargePrintBook">
-<span class="h" property="rdfs:label">Large-Print book</span>
+<span class="h" property="rdfs:label">bgn:LargePrintBook</span>
 <span property="rdfs:comment">Book format: Large-Print book.</span>
+</div>
+
+<div typeof="http://schema.org/MapCategoryType" resource="http://bibliograph.net/CartographicMap">
+  <span class="h" property="rdfs:label">bgn:CartographicMap</span>
+  <span property="rdfs:comment">A cartographic / geographic map .</span>
 </div>
 
 <hr/>
@@ -302,6 +307,17 @@
 <span class="h" property="rdfs:label">schema:creator</span>
 <span>Range:
 	      	<a property="http://schema.org/rangeIncludes" href="http://bibliograph.net/Agent">bgn:Agent</a>
+</span>
+</div>
+
+<div typeof="rdf:Property" resource="http://bibliograph.net/inSupportOf">
+<span class="h" property="rdfs:label">bgn:inSupportOf</span>
+<span property="rdfs:comment">Qualification, candidature, degree, application that Thesis supports.</span>
+<span>Domain:
+            <a property="http://schema.org/domainIncludes" href="http://bibliograph.net/Thesis">bgn:Thesis</a>
+</span>
+<span>Range:
+            <a property="http://schema.org/rangeIncludes" href="http://schema.org/Text">schema:Text</a>
 </span>
 </div>
 

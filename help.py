@@ -25,23 +25,14 @@ HelpCache = {}
 
 schemaText = '''<h2>Schema Structure</h2>
 
-<p>The schema described on this site have been assembled to reflect <a href="http://bibliograph.net/docs/principles.html">
-shared principles</a>.  The resultant approach is that the core of of the types and properties are as defined by 
-<a href="http://Schema.org">Schema.org</a>.  The Editor of BiblioGraph.net will endeavour to track as closely and as soon 
-as possible changes to the published terms from Schema.org.</p>
+<p>The schema described on this site have been assembled to reflect <a href="http://bibliograph.net/docs/principles.html">shared principles</a> and the core types and properties are as defined by <a href="http://Schema.org">Schema.org</a>. The Editor of BiblioGraph.net will track changes to the published terms from Schema.org and update this site to reflect them.</p>
 
-<p>When appropriate terms are not available in Schema.org, proposals from the 
-<a href="http://www.w3.org/community/schemabibex/">Schema Bib Extend W3C Community Group</a> are looked to for suitable options.  
-Finally, terms are added to the BiblioGraph.net namespace - often with acknowledgement of examples from other suitable vocabularies 
-such as Dublin Core, Bibo, etc.  The default approach being to keep the number of namespaces in BiblioGraph.net described data to 
-a minimum - preferably only two, schema: &amp; bgn:.</p>
-</p>
+<p>When appropriate terms are not available in Schema.org, proposals from the <a href="http://www.w3.org/community/schemabibex/">Schema Bib Extend W3C Community Group</a> are looked to for suitable options. Finally, terms are added to the BiblioGraph.net namespace, often with acknowledgement of examples from other suitable vocabularies such as Dublin Core, Bibo, etc. The  goal is to keep the number of namespaces in BiblioGraph.net described data to a minimum with a preference for only two--schema: & bgn:</p>
 <p>
 The terms on this site are defined in rdfa source files, which are directly accessible:
 <ul>
-	<li>Core Schema.org vocabulary: <a href="/docs/schema_org_rdfa.html">schema_org_rdfa.html</a></li>
-	<li>Extension proposals from Schema Bib Extend Group: <a href="/docs/schema_extensions_rdfa.html">schema_extensions_rdfa.html</a></li>
-	<li>BiblioGraph.net terms: <a href="/docs/bibliograph_net_rdfa.html">bibliograph_net_rdfa.html</a></li>
+	<li>Core Schema.org vocabulary: <a href="/docs/schema_org_rdfa.html">/docs/schema_org_rdfa.html</a></li>
+	<li>BiblioGraph.net terms: <a href="/docs/bibliograph_net_rdfa.html">/bibliograph_net_rdfa.html</a></li>
 </ul>
 </p>
 '''
