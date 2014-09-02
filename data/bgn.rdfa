@@ -20,7 +20,7 @@
     </p>
 <p vocab="http://bibliograph.net/" prefix="bgn:http://bibliograph.net/">Default vocabulary prefix: 'bgn:'</p>
 <p>
-<span property="schema:softwareVersion">BiblioGraph.net Version 0.83</span>
+<span property="schema:softwareVersion">BiblioGraph.net Version 0.84</span>
 </p>
 <hr/>
 <h2>Types</h2>
@@ -275,8 +275,6 @@
 <span class="h" property="rdfs:label">bgn:VideoGame</span>
 <span property="rdfs:comment">An electronic game using video feedback.</span>
 <span> Subclass of:
-		     <a property="rdfs:subClassOf" href="http://schema.org/CreativeWork">schema:CreativeWork</a>
-		     <a property="rdfs:subClassOf" href="http://schema.org/Product">schema:Product</a>
 		     <a property="rdfs:subClassOf" href="http://bibliograph.net/Game">bgn:Game</a>
 </span>
 <span>Source:  <a property="dc:source" href="http://www.productontology.org/id/Video_game">pto:Video_game</a></span>
