@@ -20,7 +20,7 @@
     </p>
 <p vocab="http://bibliograph.net/" prefix="bgn:http://bibliograph.net/">Default vocabulary prefix: 'bgn:'</p>
 <p>
-<span property="schema:softwareVersion">BiblioGraph.net Version 0.82</span>
+<span property="schema:softwareVersion">BiblioGraph.net Version 0.83</span>
 </p>
 <hr/>
 <h2>Types</h2>
@@ -61,7 +61,7 @@
 
 <div typeof="rdfs:Class" resource="http://bibliograph.net/Chapter">
 <span class="h" property="rdfs:label">bgn:Chapter</span>
-<span property="rdfs:comment">One of the sections into which a book is divided. A chapter usually has a number or a name.</span>
+<span property="rdfs:comment">One of the sections into which a book is divided. A chapter usually has a section number or a name.</span>
 <span> Subclass of:
 		     <a property="rdfs:subClassOf" href="http://schema.org/CreativeWork">schema:CreativeWork</a>
 </span>
@@ -105,7 +105,7 @@
 
 <div typeof="rdfs:Class" resource="http://bibliograph.net/Game">
 <span class="h" property="rdfs:label">bgn:Game</span>
-<span property="rdfs:comment">A game.</span>
+<span property="rdfs:comment">An application or set of materials designed for interactive play, for one or more persons, often including competition and rewards.</span>
 <span> Subclass of:
 		     <a property="rdfs:subClassOf" href="http://schema.org/CreativeWork">schema:CreativeWork</a>
 		     <a property="rdfs:subClassOf" href="http://schema.org/Product">schema:Product</a>
@@ -180,6 +180,7 @@
 <span> Subclass of:
 		     <a property="rdfs:subClassOf" href="http://schema.org/Periodical">schema:Periodical</a>
 </span>
+<span>Source:  <a property="dc:source" href="http://www.productontology.org/id/Newspaper">pto:Newspaper</a></span>
 </div>
 
 <div typeof="rdfs:Class" resource="http://bibliograph.net/MusicScore">
