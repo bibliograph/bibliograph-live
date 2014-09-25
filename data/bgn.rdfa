@@ -333,7 +333,7 @@
 
 <div typeof="rdf:Property" resource="http://bibliograph.net/translationOfWork">
 <span class="h" property="rdfs:label">bgn:translationOfWork</span>
-<span property="rdfs:comment">The work that this work has been translated from. e.g. 物种起源 is a translationOf “On the Origin of the Species”</span>
+<span property="rdfs:comment">The work that this work has been translated from. e.g. 物种起源 is a translationOf “On the Origin of Species”</span>
 <span>Domain:
 	      	<a property="http://schema.org/domainIncludes" href="http://schema.org/CreativeWork">schema:CreativeWork</a>
 </span>
