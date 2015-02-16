@@ -20,7 +20,7 @@
     </p>
 <p vocab="http://bibliograph.net/" prefix="bgn:http://bibliograph.net/">Default vocabulary prefix: 'bgn:'</p>
 <p>
-<span property="schema:softwareVersion">BiblioGraph.net Version 1.0</span>
+<span property="schema:softwareVersion">BiblioGraph.net Version 1.1</span>
 </p>
 <hr/>
 <h2>Types</h2>
@@ -101,15 +101,6 @@
 			<a property="rdfs:subClassOf" href="http://schema.org/Product">schema:Product</a>
 </span>
 <span>Source:  <a property="dc:source" href="http://www.productontology.org/id/DVD">pto:DVD</a></span>
-</div>
-
-<div typeof="rdfs:Class" resource="http://bibliograph.net/Game">
-<span class="h" property="rdfs:label">bgn:Game</span>
-<span property="rdfs:comment">An application or set of materials designed for interactive play, for one or more persons, often including competition and rewards.</span>
-<span> Subclass of:
-		     <a property="rdfs:subClassOf" href="http://schema.org/CreativeWork">schema:CreativeWork</a>
-		     <a property="rdfs:subClassOf" href="http://schema.org/Product">schema:Product</a>
-</span>
 </div>
 
 <div typeof="rdfs:Class" resource="http://bibliograph.net/Globe">
@@ -271,15 +262,6 @@
 <span>Source:  <a property="dc:source" href="http://www.productontology.org/id/VHS">pto:VHS</a></span>
 </div>
 
-<div typeof="rdfs:Class" resource="http://bibliograph.net/VideoGame">
-<span class="h" property="rdfs:label">bgn:VideoGame</span>
-<span property="rdfs:comment">An electronic game using video feedback.</span>
-<span> Subclass of:
-		     <a property="rdfs:subClassOf" href="http://bibliograph.net/Game">bgn:Game</a>
-</span>
-<span>Source:  <a property="dc:source" href="http://www.productontology.org/id/Video_game">pto:Video_game</a></span>
-</div>
-
 <hr/>
 <h2>Enumeration Members</h2>
 
@@ -292,6 +274,11 @@
 <div typeof="http://schema.org/BookFormatType" resource="http://bibliograph.net/LargePrintBook">
 <span class="h" property="rdfs:label">bgn:LargePrintBook</span>
 <span property="rdfs:comment">Book format: Large-Print book.</span>
+</div>
+
+<div typeof="http://schema.org/BookFormatType" resource="http://bibliograph.net/PrintBook">
+<span class="h" property="rdfs:label">bgn:PrintBook</span>
+<span property="rdfs:comment">Book format: Print book. Used in cases where the book format is unknown or otherwise not covered by specific formats such as schema:Paperback, schema:Hardcover, etc.</span>
 </div>
 
 <div typeof="http://schema.org/MapCategoryType" resource="http://bibliograph.net/CartographicMap">
