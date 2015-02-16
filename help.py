@@ -70,6 +70,9 @@ class MainPage(webapp2.RequestHandler):
 		class_str = ""
 		Types = HelpCache.get('Types')
 		if Types.get(class_name):
+			multi = ""
+			if len(Types[class_name]['subClassOf']) > 1:
+				multi = " *"
 			class_str = "<tr>"
 			if depth > 0:
 				for num in range(0,depth):
@@ -79,7 +82,7 @@ class MainPage(webapp2.RequestHandler):
 			if colspan > 0:
 				class_str += "colspan=\""+str(colspan)+"\""
 			class_str += ">"
-			class_str += "<a href=\"/"+Types[class_name]['label']+"\" class=\"prefix-"+my_schema_prefix+"\">"+Types[class_name]['label']+"</a>"
+			class_str += "<a href=\"/"+Types[class_name]['label']+"\" class=\"prefix-"+my_schema_prefix+"\">"+Types[class_name]['label']+"</a>" + multi
 			if showProperties:
 				if len(Types[class_name]['properties']) > 0:
 					class_str += ": "
@@ -110,86 +113,90 @@ class MainPage(webapp2.RequestHandler):
 						api.Unit.storeVersion(span.string)
 
 	def getTypesAndTree(self):
+		class_divs = {}
 		Tree = {}
 		Types = {}
 		for schema_name in glob.glob("data/*.rdfa"):
+				log.info("File: " + schema_name)
 				dom = BeautifulSoup(open(schema_name))
 				self.getVerFromDom(dom)
 				# get the Types
-				for div in dom.find_all('div'):
-					if div['typeof'] == "rdfs:Class":
-						# initialize some things
-						class_div = div
-						class_resource = div['resource']
-						class_label = ""
-						class_comment = ""
-						class_subclassof = []
-						class_properties = [] 
-						for s in class_div.find_all('span'):
-							if s.get('property'):
-								if s['property'] == "rdfs:comment":
-									class_comment = s.string
-								elif s['property'] == "rdfs:label":
-									class_label = s.string
-									if ":" in class_label:
-										class_label = class_label[class_label.find(":")+1:]
-							else:
-								if s.a['property'] == "rdfs:subClassOf":
-									class_subclassof.append(s.a['href'])
+				for div in dom.find_all("div",typeof="rdfs:Class"):
+					class_div = div
+					class_resource = div['resource']
+					class_label = ""
+					class_comment = ""
+					class_subclassof = []
+					class_properties = [] 
+					class_divs[div['resource']] = class_div
 						
-						class_dict = {'label': class_label, 'comment': class_comment, 'subClassOf': class_subclassof, 'properties': []}
-						if Types.get(class_resource):
-							# the class dictionary already has an entry for this resource.	
-							# Update its comment if it's empty
-							if not "comment" in Types[class_resource] and len(class_comment) > 0:
-								Types[class_resource]['comment'] = class_comment
-							# Update its subclass list
-							if not Types[class_resource]['subClassOf']:
-								Types[class_resource]['subClassOf'] = class_subclassof
-							else:
-								Types[class_resource]['subClassOf'] = Types[class_resource]['subClassOf'] + class_subclassof
+					for s in class_div.find_all('span'):
+						if s.get('property'):
+							if s['property'] == "rdfs:comment":
+								class_comment = s.string
+							elif s['property'] == "rdfs:label":
+								class_label = s.string
+								if ":" in class_label:
+									class_label = class_label[class_label.find(":")+1:]
 						else:
-							Types[class_resource] = class_dict
-						# add it as a child to its parents
-						if not Tree.get(class_resource):
-							Tree[class_resource] = []
-						for sc in class_subclassof:
-							if Tree.get(sc): 
+							if s.a['property'] == "rdfs:subClassOf":
+								class_subclassof.append(s.a['href'])
+					
+					class_dict = {'label': class_label, 'comment': class_comment, 'subClassOf': class_subclassof, 'properties': []}
+					if Types.get(class_resource):
+						# the class dictionary already has an entry for this resource.	
+						# Update its comment if it's empty
+						if not "comment" in Types[class_resource] and len(class_comment) > 0:
+							Types[class_resource]['comment'] = class_comment
+						# Update its subclass list
+						if not Types[class_resource]['subClassOf']:
+							Types[class_resource]['subClassOf'] = class_subclassof
+						else:
+							Types[class_resource]['subClassOf'] = Types[class_resource]['subClassOf'] + class_subclassof
+					else:
+						Types[class_resource] = class_dict
+#					log.info(" "+class_label + str(len(Types[class_resource]['subClassOf'])))
+					# add it as a child to its parents
+					if not Tree.get(class_resource):
+						Tree[class_resource] = []
+					for sc in class_subclassof:
+						if Tree.get(sc): 
+							if Tree[sc].count(class_resource) == 0:
 								Tree[sc].append(class_resource)
-							else:
-								Tree[sc] = []
-								Tree[sc].append(class_resource)
+						else:
+							Tree[sc] = []
+							Tree[sc].append(class_resource)
+							
 				# get the properties
-				for div in dom.find_all('div'):
-					if div['typeof'] == "rdf:Property":
-						prop_div = div
-						prop_resource = div['resource']
-						prop_label = ""
-						prop_comment = ""
-						prop_domainIncludes = []
-						prop_rangeIncludes = []
-						for s in prop_div.find_all('span'):
-							if s.get('property'):
-								if s['property'] == "rdfs:comment":
-									prop_comment = s.string
-								elif s['property'] == "rdfs:label":
-									prop_label = s.string
-									if ":" in prop_label:
-										prop_label = prop_label[prop_label.find(":")+1:]
-							else:
-								if s.a['property'] == "http://schema.org/domainIncludes":
-									prop_domainIncludes.append(s.a['href'])
-								elif s.a['property'] == "http://schema.org/rangeIncludes":
-									prop_rangeIncludes.append(s.a['href'])
-						
-						# add this property to the properties list for the class identified as the range
-						for r in prop_domainIncludes:
-							if Types.get(r):
-								Types[r]['properties'].append(prop_resource)
-							else:
-								r_label = r[r.rfind("/")+1:]
-								class_dict = {'label': r_label, 'comment': '', 'subClassOf': '', 'properties': [prop_resource]}
-								Types[r] = class_dict
+				for div in dom.find_all("div",typeof="rdfs:Property"):
+					prop_div = div
+					prop_resource = div['resource']
+					prop_label = ""
+					prop_comment = ""
+					prop_domainIncludes = []
+					prop_rangeIncludes = []
+					for s in prop_div.find_all('span'):
+						if s.get('property'):
+							if s['property'] == "rdfs:comment":
+								prop_comment = s.string
+							elif s['property'] == "rdfs:label":
+								prop_label = s.string
+								if ":" in prop_label:
+									prop_label = prop_label[prop_label.find(":")+1:]
+						else:
+							if s.a['property'] == "http://schema.org/domainIncludes":
+								prop_domainIncludes.append(s.a['href'])
+							elif s.a['property'] == "http://schema.org/rangeIncludes":
+								prop_rangeIncludes.append(s.a['href'])
+					
+					# add this property to the properties list for the class identified as the range
+					for r in prop_domainIncludes:
+						if Types.get(r):
+							Types[r]['properties'].append(prop_resource)
+						else:
+							r_label = r[r.rfind("/")+1:]
+							class_dict = {'label': r_label, 'comment': '', 'subClassOf': '', 'properties': [prop_resource]}
+							Types[r] = class_dict
 				
 		HelpCache['Tree'] = Tree
 		HelpCache['Types'] = Types
@@ -239,6 +246,7 @@ class MainPage(webapp2.RequestHandler):
 			
 		elif node == "types":
 			self.response.out.write("<h1>"+helpTypeList[node]+"</h1>")
+			self.response.out.write("<em>* Indicates a Type with multiple parent Types</em>")
 			global treeline
 			if not HelpCache.get('Tree'):
 				logging.debug("HelpCache MISS: Tree")
